@@ -1,5 +1,22 @@
 ---
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+
 const pageTitle = 'A propos de moi';
+
+const identity = {
+    firstName: "John",
+    lastName: "Doe",
+    country: "France",
+    occupation: "Développeur web",
+    hobbies: ["Histoire", "Running"]
+};
+
+const skills = ["JavaScript", "React", "React Native", "Next.js"];
+
+const happy = true;
+const finished = false
+const goal = 3
 ---
 
 <html lang="en">
@@ -11,11 +28,25 @@ const pageTitle = 'A propos de moi';
 		<title>{ pageTitle}</title>
 	</head>
 	<body>
-        <a href="/">Accueil</a>
-        <a href="/about/">A propos</a>
-        <a href="/blog">Blog</a>
-		<h1>Tutoriel astro</h1>
+        <Navigation />
+		<h1 class=" text-3xl">Tutoriel astro</h1>
         <h2>{ pageTitle}</h2>
 		<p>Ceci est une page A propos de moi</p>
+        <p>Voici quelques faits me concernant :</p>
+        <ul>
+        <li>Je m'appelle {identity.firstName}.</li>
+        <li>Je vis au {identity.country} et je travaille en tant que {identity.occupation}.</li>
+        {identity.hobbies.length >= 2 &&
+            <li>Deux de mes loisirs sont : {identity.hobbies[0]} et {identity.hobbies[1]}</li>
+        }
+        </ul>
+        <p>Voici mes compétences :</p>
+        <ul>
+        {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+        { happy && <p> Je suis heureux d'apprendre Astro</p>}
+        { finished ? <p> J'ai fini le tutoriel</p> : <p> Je n'ai pas fini le tutoriel</p>}
+        { goal === 3 ? <p> J'ai atteint mon objectif</p> : <p> Je n'ai pas atteint mon objectif</p>}
+        <Footer />
 	</body>
 </html>
